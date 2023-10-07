@@ -61,12 +61,19 @@ developers = [
 ]
 
 # Crea el HTML para el pie de página
-footer_html = "<footer style='width: 100%; background-color: #000; padding: 10px 0; text-align: left; color: #fff;'>"
+footer_html = """
+<footer style='width: 100%; background-color: #333; padding: 20px 0; color: #fff; position: absolute; bottom: 0;'>
+    <div style='max-width: 600px; margin: auto; text-align: left;'>
+        <h2 style='margin-bottom: 20px;'>Información de contacto</h2>
+"""
 
 for dev in developers:
-    footer_html += f"<p style='margin: 0;'><strong>{dev['name']}</strong>: <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
+    footer_html += f"<p style='margin-bottom: 10px;'><strong>{dev['name']}</strong>: <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
 
-footer_html += "</footer>"
+footer_html += """
+    </div>
+</footer>
+"""
 
 # Muestra el pie de página en Streamlit
 st.markdown(footer_html, unsafe_allow_html=True)
