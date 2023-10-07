@@ -40,7 +40,7 @@ if response.status_code == 200:
             count += 1
 
             # Añade el juego a la fila HTML
-            row_html += f"<td style='border: none; width: 100px; height: 200px; text-align: center; vertical-align: top;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
+            row_html += f"<td style='border: none; width: 100px; height: 200px; text-align: center; vertical-align: bottom;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
 
             # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
             if count % 5 == 0:
