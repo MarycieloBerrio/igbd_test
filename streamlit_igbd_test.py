@@ -28,10 +28,10 @@ if response.status_code == 200:
     count = 0
 
     # Muestra los juegos en Streamlit
-    for i in range(0, len(games), 2):  # Cambia el '2' a cuántos juegos quieres por fila
+    for i in range(0, len(games), 3):  # Cambia el '3' a cuántos juegos quieres por fila
         row_html = "<table><tr>"
 
-        for j in range(2):  # Cambia el '2' a cuántos juegos quieres por fila
+        for j in range(3):  # Cambia el '3' a cuántos juegos quieres por fila
             if i + j < len(games) and 'cover' in games[i + j] and count < 50:
                 game = games[i + j]
                 image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
@@ -41,7 +41,7 @@ if response.status_code == 200:
                 count += 1
 
                 # Añade el juego a la fila HTML
-                row_html += f"<td style='border: none;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/>{game['name']}</td>"
+                row_html += f"<td style='border: none; width: 100px; text-align: center;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
 
         row_html += "</tr></table>"
         st.write(row_html, unsafe_allow_html=True)
