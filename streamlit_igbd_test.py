@@ -43,12 +43,12 @@ if response.status_code == 200:
             row_html += f"<td style='border: none; width: 100px; text-align: center;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
 
             # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
-            if count % 3 == 0:
+            if count % 5 == 0:
                 row_html += "</tr></table>"
                 st.write(row_html, unsafe_allow_html=True)
                 row_html = "<table><tr>"
 
     # Si quedan juegos en la última fila, muestra la fila
-    if count % 3 != 0:
+    if count % 5 != 0:
         row_html += "</tr></table>"
         st.write(row_html, unsafe_allow_html=True)
