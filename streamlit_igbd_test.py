@@ -26,7 +26,12 @@ if response.status_code == 200:
 
     # Muestra los juegos en Streamlit
     for game in games:
-        st.header(game['name'])
-        st.image(game['cover']['url'])
+    st.header(game['name'])
+    if 'cover' in game:
+        # La API de IGDB devuelve las URLs de las imágenes en un formato especial
+        # Necesitamos convertirlo a una URL completa
+        image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
+        image_url = 'https:' + image_url
+        st.image(image_url)
 else:
     st.write("Hubo un error al obtener los datos de la API de IGDB.")
