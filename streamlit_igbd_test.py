@@ -27,21 +27,28 @@ if response.status_code == 200:
     # Contador para llevar un registro de cuántos juegos se han mostrado
     count = 0
 
+    # Inicializa la fila HTML
+    row_html = "<table><tr>"
+
     # Muestra los juegos en Streamlit
-    for i in range(0, len(games), 3):  # Cambia el '3' a cuántos juegos quieres por fila
-        row_html = "<table><tr>"
-
-        for j in range(3):  # Cambia el '3' a cuántos juegos quieres por fila
-            if i + j < len(games) and 'cover' in games[i + j] and count < 50:
-                game = games[i + j]
-                image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
-                image_url = 'https:' + image_url
+    for game in games:
+        if 'cover' in game and count < 50:
+            image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
+            image_url = 'https:' + image_url
                 
-                # Incrementa el contador
-                count += 1
+            # Incrementa el contador
+            count += 1
 
-                # Añade el juego a la fila HTML
-                row_html += f"<td style='border: none; width: 100px; text-align: center;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
+            # Añade el juego a la fila HTML
+            row_html += f"<td style='border: none; width: 100px; text-align: center;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
 
+            # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
+            if count % 3 == 0:
+                row_html += "</tr></table>"
+                st.write(row_html, unsafe_allow_html=True)
+                row_html = "<table><tr>"
+
+    # Si quedan juegos en la última fila, muestra la fila
+    if count % 3 != 0:
         row_html += "</tr></table>"
         st.write(row_html, unsafe_allow_html=True)
