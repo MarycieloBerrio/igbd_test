@@ -2,15 +2,6 @@ import streamlit as st
 import requests
 import json
 
-def get_top_50_games():
-  """Obtiene los 50 videojuegos con más rating de la API IGDB."""
-
-  url = "https://api.igdb.com/v4/games/?sort=rating&order=desc&limit=50"
-  response = requests.get(url)
-  data = response.json()
-
-  return data
-
 # Título de la página
 st.title("50 videojuegos que deberías probar")
 
@@ -24,7 +15,7 @@ headers = {
 }
 
 # Parámetros de la consulta a la API de IGDB
-body = get_top_50_games()
+body = 'fields name,cover.url; limit 100;'
 
 response = requests.post(url, headers=headers, data=body)
 
@@ -89,4 +80,3 @@ st.write("<br/><br/><br/><br/>", unsafe_allow_html=True)
 
 # Muestra el pie de página en Streamlit
 st.markdown(footer_html, unsafe_allow_html=True)
-
