@@ -28,10 +28,10 @@ if response.status_code == 200:
     count = 0
 
     # Muestra los juegos en Streamlit
-    for i in range(0, len(games), 3):  # Cambia el '3' a cuántos juegos quieres por fila
-        cols = st.beta_columns(3)  # Cambia el '3' a cuántos juegos quieres por fila
+    for i in range(0, len(games), 2):  # Cambia el '2' a cuántos juegos quieres por fila
+        cols = st.beta_columns(2)  # Cambia el '2' a cuántos juegos quieres por fila
 
-        for j in range(3):  # Cambia el '3' a cuántos juegos quieres por fila
+        for j in range(2):  # Cambia el '2' a cuántos juegos quieres por fila
             if i + j < len(games) and 'cover' in games[i + j] and count < 50:
                 game = games[i + j]
                 cols[j].header(game['name'])
