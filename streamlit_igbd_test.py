@@ -52,3 +52,21 @@ if response.status_code == 200:
     if count % 5 != 0:
         row_html += "</tr></table>"
         st.write(row_html, unsafe_allow_html=True)
+
+# Información de los desarrolladores
+developers = [
+    {"name": "Juan Garbiel Goez Duque", "email": "jgoezd@unal.edu.co"},
+    {"name": "Jerónimo Vásquez Gónzales", "email": "jevasquez@unal.edu.co"},
+    {"name": "Marycielo Berrio Zapata", "email": "mberrioz@unal.edu.co"},
+]
+
+# Crea el HTML para el pie de página
+footer_html = "<footer style='position: fixed; width: 100%; bottom: 0; background-color: #f0f2f6; padding: 10px 0; text-align: center;'>"
+
+for dev in developers:
+    footer_html += f"<p style='margin: 0;'><strong>{dev['name']}</strong>: <a href='mailto:{dev['email']}'>{dev['email']}</a></p>"
+
+footer_html += "</footer>"
+
+# Muestra el pie de página en Streamlit
+st.markdown(footer_html, unsafe_allow_html=True)
