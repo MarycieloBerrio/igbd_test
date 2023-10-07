@@ -61,10 +61,10 @@ developers = [
 ]
 
 # Crea el HTML para el pie de página
-footer_html = "<footer style='position: fixed; width: 100%; bottom: 0; background-color: #f0f2f6; padding: 10px 0; text-align: center;'>"
+footer_html = "<footer style='width: 100%; background-color: #000; padding: 10px 0; text-align: left; color: #fff;'>"
 
 for dev in developers:
-    footer_html += f"<p style='margin: 0;'><strong>{dev['name']}</strong>: <a href='mailto:{dev['email']}'>{dev['email']}</a></p>"
+    footer_html += f"<p style='margin: 0;'><strong>{dev['name']}</strong>: <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
 
 footer_html += "</footer>"
 
