@@ -15,7 +15,7 @@ headers = {
 }
 
 # Parámetros de la consulta a la API de IGDB
-body = 'fields name,cover.url; limit 50;'
+body = 'fields name,cover.url; limit 100;'
 
 response = requests.post(url, headers=headers, data=body)
 
@@ -24,14 +24,17 @@ if response.status_code == 200:
     # Convierte la respuesta en JSON
     games = json.loads(response.text)
 
+    # Contador para llevar un registro de cuántos juegos se han mostrado
+    count = 0
+
     # Muestra los juegos en Streamlit
     for game in games:
-        st.header(game['name'])
-        if 'cover' in game:
-            # La API de IGDB devuelve las URLs de las imágenes en un formato especial
-            # Necesitamos convertirlo a una URL completa
+        # Si el juego tiene una imagen de portada y aún no se han mostrado 50 juegos
+        if 'cover' in game and count < 50:
+            st.header(game['name'])
             image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
             image_url = 'https:' + image_url
             st.image(image_url)
-        else:
-            st.write("Hubo un error al obtener los datos de la API de IGDB.")
+            
+            # Incrementa el contador
+            count += 1
