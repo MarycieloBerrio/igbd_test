@@ -41,8 +41,7 @@ if response.status_code == 200:
                 count += 1
 
                 # Añade el juego a la fila HTML
-                row_html += f"<td><img src='{image_url}'/><br/>{game['name']}</td>"
+                row_html += f"<td style='border: none;'><img src='{image_url}' style='width: 100px; object-fit: contain;'/><br/>{game['name']}</td>"
 
         row_html += "</tr></table>"
         st.write(row_html, unsafe_allow_html=True)
-
