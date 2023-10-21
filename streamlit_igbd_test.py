@@ -34,6 +34,7 @@ if response.status_code == 200:
             st.write('Información del videojuego:', game['description'])
             break
 
+
 # Información de los desarrolladores
 developers = [
     {"name": "Juan Garbiel Goez Duque", "email": "jgoezd@unal.edu.co"},
