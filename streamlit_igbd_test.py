@@ -35,9 +35,18 @@ if response.status_code == 200:
             st.write(game['name'])
 
             # Añade un botón para mostrar más detalles
-            if st.button(f"Más detalles sobre {game['name']}"):
-                # Aquí puedes añadir el código para mostrar más detalles sobre el juego
-                st.write(f"Mostrando más detalles sobre {game['name']}...")
+            if st.button(f"Más detalles"):
+                # Realiza una nueva solicitud a la API de IGDB para obtener más detalles sobre el juego
+                body = f'fields name,summary,developers.name,publishers.name,platforms.name; where id = {game["id"]};'
+                response = requests.post(url, headers=headers, data=body)
+                if response.status_code == 200:
+                    game_details = json.loads(response.text)[0]
+
+                    # Muestra los detalles del juego
+                    st.write(f"Resumen: {game_details['summary']}")
+                    st.write(f"Desarrollador: {', '.join(dev['name'] for dev in game_details['developers'])}")
+                    st.write(f"Editor: {', '.join(pub['name'] for pub in game_details['publishers'])}")
+                    st.write(f"Plataformas: {', '.join(plat['name'] for plat in game_details['platforms'])}")
 
     # Si quedan juegos en la última fila, muestra la fila
     if count % 5 != 0:
