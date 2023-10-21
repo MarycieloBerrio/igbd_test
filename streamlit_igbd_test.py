@@ -35,7 +35,7 @@ if response.status_code == 200:
             st.write(game['name'])
 
             # Añade un botón para mostrar más detalles
-            if st.button(f"Más detalles"):
+            if st.button(f"Más detalles sobre {game['name']}"):
                 # Realiza una nueva solicitud a la API de IGDB para obtener más detalles sobre el juego
                 body = f'fields name,summary,developers.name,publishers.name,platforms.name; where id = {game["id"]};'
                 response = requests.post(url, headers=headers, data=body)
