@@ -15,7 +15,7 @@ headers = {
 }
 
 # Parámetros de la consulta a la API de IGDB
-body = 'fields name,cover.url,description; limit 100; sort rating desc; where rating > 70; where rating_count > 1000;'
+body = 'fields name,cover.url; limit 100; sort rating desc; where rating > 70; where rating_count > 1000;'
 
 response = requests.post(url, headers=headers, data=body)
 
@@ -24,16 +24,37 @@ if response.status_code == 200:
     # Convierte la respuesta en JSON
     games = json.loads(response.text)
 
-    # Crea una lista desplegable con los nombres de los videojuegos
-    game_names = [game['name'] for game in games]
-    selected_game = st.selectbox('Selecciona un videojuego', game_names)
+    # Contador para llevar un registro de cuántos juegos se han mostrado
+    count = 0
 
-    # Muestra la información del videojuego seleccionado
+    # Inicializa la fila HTML
+    row_html = "<table><tr>"
+
+    # Muestra los juegos en Streamlit
     for game in games:
-        if game['name'] == selected_game:
-            st.write('Información del videojuego:', game['description'])
-            break
+        if 'cover' in game and count < 50:
+            image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
+            image_url = 'https:' + image_url
+                
+            # Incrementa el contador
+            count += 1
 
+            # Añade el juego a la fila HTML
+            row_html += f"<td style='border: none; width: 100px; height: 200px;
+                        text-align: center; vertical-align: top;'><img src='{image_url}'
+                        style='width: 100px; object-fit: contain;'/><br/><div style='width:
+                        100px; word-wrap: break-word;'>{game['name']}</div></td>"
+
+            # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
+            if count % 5 == 0:
+                row_html += "</tr></table>"
+                st.write(row_html, unsafe_allow_html=True)
+                row_html = "<table><tr>"
+
+    # Si quedan juegos en la última fila, muestra la fila
+    if count % 5 != 0:
+        row_html += "</tr></table>"
+        st.write(row_html, unsafe_allow_html=True)
 
 # Información de los desarrolladores
 developers = [
@@ -50,13 +71,13 @@ footer_html = """
 """
 
 for dev in developers:
-    footer_html += f"<p style='margin-bottom: 10px;'><strong>{dev['name']}</strong>: <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
+    footer_html += f"<p style='margin-bottom: 10px;'><strong>{dev['name']}</strong>: <a 
+                href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
 
 footer_html += """
     </div>
 </footer>
 """
-
 
 # Agrega un espacio en blanco al final de la página antes del pie de página
 st.write("<br/><br/><br/><br/>", unsafe_allow_html=True)
