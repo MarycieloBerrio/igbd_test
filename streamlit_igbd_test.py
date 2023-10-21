@@ -14,39 +14,41 @@ headers = {
     'Authorization': 'Bearer 8h1ymcezojqdpcvmz5fvwxal2myoxp',
 }
 
-# Parámetros de la consulta a la API de IGDB
-body = 'fields name,cover.url; limit 100; sort rating desc; where rating > 70; where rating_count > 1000;'
+@st.cache(allow_output_mutation=True)
+def get_games():
+    # Parámetros de la consulta a la API de IGDB
+    body = 'fields name,cover.url; limit 100; sort rating desc; where rating > 70; where rating_count > 1000;'
+    response = requests.post(url, headers=headers, data=body)
+    if response.status_code == 200:
+        return json.loads(response.text)
+    else:
+        return []
 
-response = requests.post(url, headers=headers, data=body)
+games = get_games()
 
-# Comprueba si la solicitud fue exitosa
-if response.status_code == 200:
-    # Convierte la respuesta en JSON
-    games = json.loads(response.text)
+# Muestra los juegos en Streamlit
+for game in games:
+    if 'cover' in game:
+        image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
+        image_url = 'https:' + image_url
 
-    # Muestra los juegos en Streamlit
-    for game in games:
-        if 'cover' in game:
-            image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
-            image_url = 'https:' + image_url
+        # Muestra la imagen y el nombre del juego
+        st.image(image_url)
+        st.write(game['name'])
 
-            # Muestra la imagen y el nombre del juego
-            st.image(image_url)
-            st.write(game['name'])
+        # Añade un botón para mostrar más detalles
+        if st.button(f"Más detalles sobre {game['name']}"):
+            # Realiza una nueva solicitud a la API de IGDB para obtener más detalles sobre el juego
+            body = f'fields name,summary,developers.name,publishers.name,platforms.name; where id = {game["id"]};'
+            response = requests.post(url, headers=headers, data=body)
+            if response.status_code == 200:
+                game_details = json.loads(response.text)[0]
 
-            # Añade un botón para mostrar más detalles
-            if st.button(f"Más detalles sobre {game['name']}"):
-                # Realiza una nueva solicitud a la API de IGDB para obtener más detalles sobre el juego
-                body = f'fields name,summary,developers.name,publishers.name,platforms.name; where id = {game["id"]};'
-                response = requests.post(url, headers=headers, data=body)
-                if response.status_code == 200:
-                    game_details = json.loads(response.text)[0]
-
-                    # Muestra los detalles del juego
-                    st.write(f"Resumen: {game_details['summary']}")
-                    st.write(f"Desarrollador: {', '.join(dev['name'] for dev in game_details['developers'])}")
-                    st.write(f"Editor: {', '.join(pub['name'] for pub in game_details['publishers'])}")
-                    st.write(f"Plataformas: {', '.join(plat['name'] for plat in game_details['platforms'])}")
+                # Muestra los detalles del juego
+                st.write(f"Resumen: {game_details['summary']}")
+                st.write(f"Desarrollador: {', '.join(dev['name'] for dev in game_details['developers'])}")
+                st.write(f"Editor: {', '.join(pub['name'] for pub in game_details['publishers'])}")
+                st.write(f"Plataformas: {', '.join(plat['name'] for plat in game_details['platforms'])}")
 
     # Si quedan juegos en la última fila, muestra la fila
     if count % 5 != 0:
