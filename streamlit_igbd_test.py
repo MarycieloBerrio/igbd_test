@@ -49,13 +49,13 @@ footer_html = """
 """
 
 for dev in developers:
-    footer_html += f"<p style='margin-bottom: 10px;'><strong>{dev['name']}</strong>: <a 
-                href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
+    footer_html += f"<p style='margin-bottom: 10px;'><strong>{dev['name']}</strong>: <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
 
 footer_html += """
     </div>
 </footer>
 """
+
 
 # Agrega un espacio en blanco al final de la página antes del pie de página
 st.write("<br/><br/><br/><br/>", unsafe_allow_html=True)
