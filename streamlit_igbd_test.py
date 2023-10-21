@@ -24,29 +24,20 @@ if response.status_code == 200:
     # Convierte la respuesta en JSON
     games = json.loads(response.text)
 
-    # Contador para llevar un registro de cuántos juegos se han mostrado
-    count = 0
-
-    # Inicializa la fila HTML
-    row_html = "<table><tr>"
-
     # Muestra los juegos en Streamlit
     for game in games:
-        if 'cover' in game and count < 50:
+        if 'cover' in game:
             image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
             image_url = 'https:' + image_url
-                
-            # Incrementa el contador
-            count += 1
 
-            # Añade el juego a la fila HTML
-            row_html += f"<td style='border: none; width: 100px; height: 200px;text-align: center; vertical-align: top; '><img src='{image_url}'style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
+            # Muestra la imagen y el nombre del juego
+            st.image(image_url)
+            st.write(game['name'])
 
-            # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
-            if count % 5 == 0:
-                row_html += "</tr></table>"
-                st.write(row_html, unsafe_allow_html=True)
-                row_html = "<table><tr>"
+            # Añade un botón para mostrar más detalles
+            if st.button(f"Más detalles sobre {game['name']}"):
+                # Aquí puedes añadir el código para mostrar más detalles sobre el juego
+                st.write(f"Mostrando más detalles sobre {game['name']}...")
 
     # Si quedan juegos en la última fila, muestra la fila
     if count % 5 != 0:
