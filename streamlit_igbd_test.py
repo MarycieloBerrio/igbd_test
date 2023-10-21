@@ -26,6 +26,9 @@ def get_games():
 
 games = get_games()
 
+# Inicializa el contador
+count = 0
+
 # Muestra los juegos en Streamlit
 for game in games:
     if 'cover' in game:
@@ -35,6 +38,9 @@ for game in games:
         # Muestra la imagen y el nombre del juego
         st.image(image_url)
         st.write(game['name'])
+
+        # Incrementa el contador
+        count += 1
 
         # Añade un botón para mostrar más detalles
         if st.button(f"Más detalles sobre {game['name']}"):
@@ -49,11 +55,6 @@ for game in games:
                 st.write(f"Desarrollador: {', '.join(dev['name'] for dev in game_details['developers'])}")
                 st.write(f"Editor: {', '.join(pub['name'] for pub in game_details['publishers'])}")
                 st.write(f"Plataformas: {', '.join(plat['name'] for plat in game_details['platforms'])}")
-
-    # Si quedan juegos en la última fila, muestra la fila
-    if count % 5 != 0:
-        row_html += "</tr></table>"
-        st.write(row_html, unsafe_allow_html=True)
 
 # Información de los desarrolladores
 developers = [
