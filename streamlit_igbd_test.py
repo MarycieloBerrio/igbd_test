@@ -2,6 +2,25 @@ import streamlit as st
 import requests
 import json
 
+# Forzar el tema oscuro
+st.markdown("""
+    <style>
+        .stApp {
+            background: #0e1117;
+        }
+
+        div.stTabs button {
+            background: #0e1117;
+        }
+
+        .stApp header {
+            background: #0e1117;
+        }
+        
+        /* Aquí puedes agregar el resto del código CSS que proporcionaste */
+    </style>
+    """, unsafe_allow_html=True)
+
 # Título de la página
 st.title("50 videojuegos que deberías probar")
 
