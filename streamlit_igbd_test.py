@@ -40,7 +40,10 @@ if response.status_code == 200:
             count += 1
 
             # Añade el juego a la fila HTML
-            row_html += f"<td style='border: none; width: 100px; height: 200px; text-align: center; vertical-align: top;'><img src='{image_url}'style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
+            row_html += f"<td style='border: none; width: 100px; height: 200px; text-align:\
+                        center; vertical-align: top;'><img src='{image_url}'style='width: 100px;\
+                        object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;\
+                        '>{game['name']}</div></td>"
 
             # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
             if count % 5 == 0:
@@ -64,12 +67,12 @@ developers = [
 footer_html = """
 <footer style='width: 100%; background-color: #333; padding: 20px 0; color: #fff;'>
     <div style='max-width: 600px; margin: auto; text-align: left;'>
-        <h2 style='margin-bottom: 20px; color: #FFD700;'>Información de contacto</h2>
+        <h2 style='margin-bottom: 20px;'>Información de contacto</h2>
 """
 
 for dev in developers:
-    footer_html += f"<p style='margin-bottom: 10px;'><strong style='color: #FFD700;'>{dev['name']}</strong>: <a 
-                href='mailto:{dev['email']}' style='color: #ADFF2F;'>{dev['email']}</a></p>"
+    footer_html += f"<p style='margin-bottom: 10px;'><strong>{dev['name']}</strong>:\
+                    <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
 
 footer_html += """
     </div>
@@ -81,4 +84,3 @@ st.write("<br/><br/><br/><br/>", unsafe_allow_html=True)
 
 # Muestra el pie de página en Streamlit
 st.markdown(footer_html, unsafe_allow_html=True)
-
