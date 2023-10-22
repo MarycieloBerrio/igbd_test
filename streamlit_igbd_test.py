@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
 import json
-import streamlit_session_state as SessionState
 
 # Título de la página
 st.title("50 videojuegos que deberías probar")
@@ -15,47 +14,44 @@ headers = {
     'Authorization': 'Bearer 8h1ymcezojqdpcvmz5fvwxal2myoxp',
 }
 
-@st.cache(allow_output_mutation=True)
-def get_games():
-    # Parámetros de la consulta a la API de IGDB
-    body = 'fields name,cover.url; limit 100; sort rating desc; where rating > 70; where rating_count > 1000;'
-    response = requests.post(url, headers=headers, data=body)
-    if response.status_code == 200:
-        return json.loads(response.text)
-    else:
-        return []
+# Parámetros de la consulta a la API de IGDB
+body = 'fields name,cover.url; limit 100; sort rating desc; where rating > 70; where rating_count > 1000;'
 
-games = get_games()
+response = requests.post(url, headers=headers, data=body)
 
-# Inicializa el estado de la sesión
-state = SessionState.get(game_id=None)
+# Comprueba si la solicitud fue exitosa
+if response.status_code == 200:
+    # Convierte la respuesta en JSON
+    games = json.loads(response.text)
 
-# Muestra los juegos en Streamlit
-for game in games:
-    if 'cover' in game:
-        image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
-        image_url = 'https:' + image_url
+    # Contador para llevar un registro de cuántos juegos se han mostrado
+    count = 0
 
-        # Muestra la imagen y el nombre del juego
-        st.image(image_url)
-        st.write(game['name'])
+    # Inicializa la fila HTML
+    row_html = "<table><tr>"
 
-        # Añade un botón para mostrar más detalles
-        if st.button(f"Más detalles sobre {game['name']}"):
-            state.game_id = game["id"]
+    # Muestra los juegos en Streamlit
+    for game in games:
+        if 'cover' in game and count < 50:
+            image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
+            image_url = 'https:' + image_url
+                
+            # Incrementa el contador
+            count += 1
 
-if state.game_id is not None:
-    # Realiza una nueva solicitud a la API de IGDB para obtener más detalles sobre el juego
-    body = f'fields name,summary,developers.name,publishers.name,platforms.name; where id = {state.game_id};'
-    response = requests.post(url, headers=headers, data=body)
-    if response.status_code == 200:
-        game_details = json.loads(response.text)[0]
+            # Añade el juego a la fila HTML
+            row_html += f"<td style='border: none; width: 100px; height: 200px; text-align: center; vertical-align: top;'><img src='{image_url}'style='width: 100px; object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;'>{game['name']}</div></td>"
 
-        # Muestra los detalles del juego
-        st.write(f"Resumen: {game_details['summary']}")
-        st.write(f"Desarrollador: {', '.join(dev['name'] for dev in game_details['developers'])}")
-        st.write(f"Editor: {', '.join(pub['name'] for pub in game_details['publishers'])}")
-        st.write(f"Plataformas: {', '.join(plat['name'] for plat in game_details['platforms'])}")
+            # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
+            if count % 5 == 0:
+                row_html += "</tr></table>"
+                st.write(row_html, unsafe_allow_html=True)
+                row_html = "<table><tr>"
+
+    # Si quedan juegos en la última fila, muestra la fila
+    if count % 5 != 0:
+        row_html += "</tr></table>"
+        st.write(row_html, unsafe_allow_html=True)
 
 # Información de los desarrolladores
 developers = [
