@@ -8,6 +8,12 @@ st.set_page_config(
     page_icon="🎮",
 )
 
+# Define la función local_css
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+# Llama a local_css con el nombre del archivo CSS
 local_css("style.css")
 
 # URL de la imagen del encabezado
