@@ -23,18 +23,6 @@ st.markdown("""
             background: #0e1117;
         }
         
-        /* ---------- Main page hacks ---------- */
-        
-        section[tabindex=0] div.stButton {
-            left: -999em;
-            position: absolute;
-            /* yeah...this is a very hacky way to send buttons probably to mars */
-        }
-        
-        h3 {
-            color: #756760;
-            margin-bottom: 1rem;
-        }
     </style>
     """, unsafe_allow_html=True)
 
