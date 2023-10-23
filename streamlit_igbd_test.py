@@ -4,8 +4,9 @@ import json
 
 # Configura el título y el favicon de la página
 st.set_page_config(
-    page_title="Gamer's Companion 🎮",
+    page_title="Gamer's Companion",
     page_icon="🎮",
+    initial_sidebar_state="collapsed"
 )
 
 # Define la función local_css
