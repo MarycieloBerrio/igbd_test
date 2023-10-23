@@ -33,20 +33,21 @@ api_key = '8h1ymcezojqdpcvmz5fvwxal2myoxp'
 url = 'https://api.igdb.com/v4/games'
 headers = {'Client-ID': 'ju1vfy05jqstzoclqv1cs2hsomw1au', 'Authorization': f'Bearer {api_key}'}
 
-# Define la consulta para buscar el juego
-body = f'''
-fields name, summary, developer, publisher, platforms;
-where name ~ "{game_name}";'''
-
-# Realiza la solicitud a la API
-response = requests.post(url, headers=headers, data=body)
-
 # Crea una barra de búsqueda en Streamlit
 game_name = st.text_input('Busca un videojuego')
 
 # Si se introduce un nombre de juego, busca la información del juego
 if game_name:
-    game_info = get_game_info(game_name)
+    # Define la consulta para buscar el juego
+    body = f'''
+    fields name, summary, developer, publisher, platforms;
+    where name ~ "{game_name}";'''
+    
+    # Realiza la solicitud a la API
+    response = requests.post(url, headers=headers, data=body)
+    
+    # Devuelve los datos del juego
+    game_info = response.json()
     
     # Muestra la información del juego en Streamlit
     if game_info:
