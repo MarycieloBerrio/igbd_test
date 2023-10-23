@@ -34,6 +34,15 @@ st.markdown("""
             color: #756760;
             margin-bottom: 1rem;
         }
+
+        div.stTabs>div>div:nth-of-type(3) {
+            overflow-x: hidden;
+            height: 80vh;
+        }
+
+div.stTabs>div>div:nth-of-type(3) p {
+    padding-right: 10px;
+}
         
     </style>
     """, unsafe_allow_html=True)
