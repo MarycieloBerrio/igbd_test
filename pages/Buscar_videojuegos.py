@@ -1,3 +1,4 @@
+from streamlit_igdb_test import local_css
 import streamlit as st
 import pandas as pd
 import requests
@@ -8,31 +9,7 @@ st.set_page_config(
     page_icon="🎮",
 )
 
-# Forzar el tema oscuro
-st.markdown("""
-    <style>
-        .stApp {
-            background: #0e1117;
-        }
-
-        div.stTabs button {
-            background: #0e1117;
-        }
-
-        .stApp header {
-            background: #0e1117;
-        }
-
-        .reportview-container .main .block-container {
-            background-color: #0e1117;
-        }
-        
-        .sidebar .sidebar-content {
-            background-color: #0e1117;
-        }
-        
-    </style>
-    """, unsafe_allow_html=True)
+local_css(style.css)
 
 # Lee los datos del archivo
 df = pd.read_csv('Base_datos/dataset_videojuegos')
