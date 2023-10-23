@@ -60,7 +60,7 @@ if response.status_code == 200:
     
             # Añade el juego a la fila HTML
             row_html += f"<td style='border-top: 1px solid #e7e7e7; border-bottom: 1px solid #e7e7e7; \
-                        border-left: 1px solid #0e1117; border-right: 1px solid #0e1117; width: \
+                        border-left: 0px; border-right: 0px; width: \
                         100px; height: 200px; text-align: center; vertical-align: top;'><img src='\
                         {image_url}'style='width: 100px; object-fit: contain;'/><br/><div style=\
                         'width: 100px; word-wrap: break-word;color: #e7e7e7;'>{game['name']}</div></td>"
