@@ -15,6 +15,10 @@ local_css("style.css")
 api_key = '8h1ymcezojqdpcvmz5fvwxal2myoxp'
 
 def get_game_info(game_name):
+    # Define la URL y los encabezados para la solicitud de la API
+    url = 'https://api.igdb.com/v4/games'
+    headers = {'Client-ID': 'ju1vfy05jqstzoclqv1cs2hsomw1au', 'Authorization': f'Bearer {api_key}'}
+
     # Define la consulta para buscar el juego
     body = f'''
     fields name, summary, involved_companies.company.name, platforms.name, cover.url, rating;
@@ -25,7 +29,7 @@ def get_game_info(game_name):
     
     # Devuelve los datos del juego
     return response.json()
-    
+
 # Crea una barra de búsqueda en Streamlit
 game_name = st.text_input('Busca un videojuego')
 
