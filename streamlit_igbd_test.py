@@ -2,6 +2,13 @@ import streamlit as st
 import requests
 import json
 
+# Configura el título y el favicon de la página
+st.set_page_config(
+    page_title="Gamer's Companion 🎮",
+    page_icon="🎮",
+)
+
+
 # Forzar el tema oscuro
 st.markdown("""
     <style>
@@ -24,20 +31,21 @@ st.markdown("""
 # URL de la imagen del encabezado
 url_imagen = "https://i.imgur.com/qQH31fg.png"
 
-# Añade la imagen como encabezado de tu aplicación de Streamlit
+# Añade la imagen como encabezado de la aplicación de Streamlit
 st.image(url_imagen)
 
 # URL de la API de IGDB
 url = "https://api.igdb.com/v4/games"
 
-# Tus credenciales para la API de IGDB
+# Credenciales para la API de IGDB
 headers = {
     'Client-ID': 'ju1vfy05jqstzoclqv1cs2hsomw1au',
     'Authorization': 'Bearer 8h1ymcezojqdpcvmz5fvwxal2myoxp',
 }
 
 # Parámetros de la consulta a la API de IGDB
-body = 'fields name,cover.url; limit 100; sort rating desc; where rating > 70; where rating_count > 1000;'
+body = 'fields name,cover.url; limit 100; sort rating desc;\
+        where rating > 70; where rating_count > 1000;'
 
 response = requests.post(url, headers=headers, data=body)
 
@@ -62,10 +70,10 @@ if response.status_code == 200:
             count += 1
 
             # Añade el juego a la fila HTML
-            row_html += f"<td style='border: none; width: 100px; height: 200px; text-align:\
-                        center; vertical-align: top;'><img src='{image_url}'style='width: 100px;\
-                        object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;\
-                        '>{game['name']}</div></td>"
+            row_html += f"<td style='border: none; width: 100px; height: 200px;text-align:\
+                        center; vertical-align: top;'><img src='{image_url}'style='width: \
+                        100px;object-fit: contain;'/><br/><div style='width: 100px; word-wrap:\
+                        break-word;\'>{game['name']}</div></td>"
 
             # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
             if count % 5 == 0:
