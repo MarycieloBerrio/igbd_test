@@ -61,25 +61,27 @@ if response.status_code == 200:
     row_html = "<table style='border-color: #fff;'><tr>"
     
     # Muestra los juegos en Streamlit
-for game in games:
-    if 'cover' in game and count < 50:
-        image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
-        image_url = 'https:' + image_url
-                
-        # Incrementa el contador
-        count += 1
+    for game in games:
+        if 'cover' in game and count < 50:
+            image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
+            image_url = 'https:' + image_url
+                    
+            # Incrementa el contador
+            count += 1
+    
+            # Añade el juego a la fila HTML
+            row_html += f"<td style='border-top: 1px solid #fff; border-bottom: 1px solid #fff; \
+                        border-left: 1px solid #0e1117; border-right: 1px solid #0e1117; width: \
+                        100px; height: 200px; text-align: center; vertical-align: top;'><img src='\
+                        {image_url}'style='width: 100px; object-fit: contain;'/><br/><div style=\
+                        'width: 100px; word-wrap: break-word;color: #fff;'>{game['name']}</div></td>"
+    
+            # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
+            if count % 5 == 0:
+                row_html += "</tr></table>"
+                st.write(row_html, unsafe_allow_html=True)
+                row_html = "<table><tr>"
 
-        # Añade el juego a la fila HTML
-        row_html += f"<td style='border-top: 1px solid #fff; width: 100px; height: 200px; text-align:\
-                    center; vertical-align: top;'><img src='{image_url}'style='width: 100px;\
-                    object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;\
-                    color: #fff;'>{game['name']}</div></td>"
-
-        # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
-        if count % 5 == 0:
-            row_html += "</tr></table>"
-            st.write(row_html, unsafe_allow_html=True)
-            row_html = "<table><tr>"
 
 
 
