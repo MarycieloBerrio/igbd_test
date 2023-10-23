@@ -21,8 +21,11 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Título de la página
-st.title("50 videojuegos que deberías probar")
+# URL de la imagen del encabezado
+url_imagen = "https://imgur.com/6bJlgZR"
+
+# Añade la imagen como encabezado de tu aplicación de Streamlit
+st.image(url_imagen)
 
 # URL de la API de IGDB
 url = "https://api.igdb.com/v4/games"
