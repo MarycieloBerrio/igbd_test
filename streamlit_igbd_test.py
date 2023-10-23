@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
 import json
+from pages import search
+
+search.search_page()
 
 # Configura el título y el favicon de la página
 st.set_page_config(
