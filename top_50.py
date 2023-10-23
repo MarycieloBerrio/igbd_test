@@ -43,9 +43,9 @@ def mostrar_pagina():
 
     # Información de los desarrolladores
     developers = [
-        {"name": "Juan Gabriel Goez Duque", "email": "jgoezd@unal.edu.co"},
-        {"name": "Jerónimo Vásquez Gónzalez", "email": "jevasquez@unal.edu.co"},
-        {"name": "Marycielo Berrio Zapata", "email": "mberrioz@unal.edu.co"},
+        {"name": "Juan Gabriel Goez Duque ", "email": "jgoezd@unal.edu.co"},
+        {"name": "Jerónimo Vásquez Gónzalez ", "email": "jevasquez@unal.edu.co"},
+        {"name": "Marycielo Berrio Zapata ", "email": "mberrioz@unal.edu.co"},
     ]
     
     # Crea el HTML para el pie de página
