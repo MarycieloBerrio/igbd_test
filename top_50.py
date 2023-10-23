@@ -1,5 +1,5 @@
 import streamlit as st
-from backend import obtener_juegos
+from back_top50 import obtener_juegos
 
 def mostrar_pagina():
     # Aquí va el código de tu página de inicio
