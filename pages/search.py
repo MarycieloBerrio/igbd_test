@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import requests
 
 # Configura el título y el favicon de la página
@@ -25,38 +26,22 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-
-# Configura tu clave API de IGDB
-api_key = '8h1ymcezojqdpcvmz5fvwxal2myoxp'
-
-# Define la URL y los encabezados para la solicitud de la API
-url = 'https://api.igdb.com/v4/games'
-headers = {'Client-ID': 'ju1vfy05jqstzoclqv1cs2hsomw1au', 'Authorization': f'Bearer {api_key}'}
+# Lee los datos del archivo
+df = pd.read_csv('Base_datos/dataset_videojuegos.csv')
 
 # Crea una barra de búsqueda en Streamlit
 game_name = st.text_input('Busca un videojuego')
 
-# Si se introduce un nombre de juego, busca la información del juego
+# Si se introduce un nombre de juego, busca la información del juego en el DataFrame
 if game_name:
-    # Define la consulta para buscar el juego
-    body = f'''
-    fields name, summary, developer, publisher, platforms;
-    where name ~ "{game_name}";'''
+    game_info = df[df['name'] == game_name]
     
-    # Realiza la solicitud a la API
-    response = requests.post(url, headers=headers, data=body)
-    
-    # Devuelve los datos del juego
-    game_info = response.json()
-    
-    # Verifica si game_info contiene algún elemento
-    if game_info:
-        # Muestra la información del juego en Streamlit
-        st.write(f"**Nombre:** {game_info[0]['name']}" if 'name' in game_info[0] else "Nombre no disponible")
-        st.write(f"**Sinopsis:** {game_info[0]['summary']}" if 'summary' in game_info[0] else "Sinopsis no disponible")
-        st.write(f"**Desarrollador:** {game_info[0]['developer']}" if 'developer' in game_info[0] else "Desarrollador no disponible")
-        st.write(f"**Editor:** {game_info[0]['publisher']}" if 'publisher' in game_info[0] else "Editor no disponible")
-        st.write(f"**Plataformas:** {', '.join(game_info[0]['platforms'])}" if 'platforms' in game_info[0] else "Plataformas no disponibles")
+    # Muestra la información del juego en Streamlit
+    if not game_info.empty:
+        st.write(f"**Nombre:** {game_info.iloc[0]['name']}")
+        st.write(f"**Sinopsis:** {game_info.iloc[0]['summary']}")
+        st.write(f"**Desarrollador:** {game_info.iloc[0]['developer']}")
+        st.write(f"**Editor:** {game_info.iloc[0]['publisher']}")
+        st.write(f"**Plataformas:** {', '.join(game_info.iloc[0]['platforms'])}")
     else:
         st.write("Lo siento, no pude encontrar ningún juego con ese nombre.")
-
