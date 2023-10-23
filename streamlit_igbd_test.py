@@ -22,10 +22,10 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # URL de la imagen del encabezado
-url_imagen = "https://i.imgur.com/6bJlgZR.png"
+url_imagen = "https://i.imgur.com/qQH31fg.png"
 
 # Añade la imagen como encabezado de tu aplicación de Streamlit
-st.image(url_imagen)
+st.image(url_imagen, use_column_width=True)
 
 # URL de la API de IGDB
 url = "https://api.igdb.com/v4/games"
