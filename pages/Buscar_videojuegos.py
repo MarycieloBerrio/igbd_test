@@ -18,7 +18,7 @@ def get_game_info(game_name):
     # Define la URL y los encabezados para la solicitud de la API
     url = 'https://api.igdb.com/v4/games'
     headers = {'Client-ID': 'ju1vfy05jqstzoclqv1cs2hsomw1au', 'Authorization': f'Bearer {api_key}'}
-    
+
     # Define la consulta para buscar el juego
     body = f'''
     fields name, summary, involved_companies.company.name, platforms.name, cover.url;
@@ -30,9 +30,10 @@ def get_game_info(game_name):
     # Devuelve los datos del juego
     return response.json()
 
-# Si se introduce un nombre de juego, busca la información del juego
-game_name = st.text_input('Ingresa el nombre del juego')
+# Crea una barra de búsqueda en Streamlit
+game_name = st.text_input('Busca un videojuego')
 
+# Si se introduce un nombre de juego, busca la información del juego
 if game_name:
     game_info = get_game_info(game_name)
     
@@ -46,11 +47,15 @@ if game_name:
         
         # Muestra la portada del juego en la columna de la izquierda
         if 'cover' in game_info[0] and 'url' in game_info[0]['cover']:
-            col1.image(game_info[0]['cover']['url'], use_column_width=True)
-        
+            image_url = 'https://images.igdb.com/igdb/image/upload/t_cover_big/' + game_info[0]['cover']['url'].split('/')[-1]
+            col1.image(image_url, use_column_width=True)
+        else:
+            st.write("Imagen no disponible")
+
         # Muestra la información del juego en la columna de la derecha
         col2.write(f"**Sinopsis:** {game_info[0]['summary']}" if 'summary' in game_info[0] else "Sinopsis no disponible")
         col2.write(f"**Desarrollador:** {game_info[0]['involved_companies'][0]['company']['name']}" if 'involved_companies' in game_info[0] and game_info[0]['involved_companies'] else "Desarrollador no disponible")
         col2.write(f"**Plataformas:** {', '.join([platform['name'] for platform in game_info[0]['platforms']])}" if 'platforms' in game_info[0] and game_info[0]['platforms'] else "Plataformas no disponibles")
     else:
         st.write("Lo siento, no pude encontrar ningún juego con ese nombre.")
+
