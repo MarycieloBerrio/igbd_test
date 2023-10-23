@@ -25,13 +25,25 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+# URL de la API de IGDB
+url = "https://api.igdb.com/v4/games"
 
-# Configura tu clave API de IGDB
-api_key = '8h1ymcezojqdpcvmz5fvwxal2myoxp'
+# Credenciales para la API de IGDB
+headers = {
+    'Client-ID': 'ju1vfy05jqstzoclqv1cs2hsomw1au',
+    'Authorization': 'Bearer 8h1ymcezojqdpcvmz5fvwxal2myoxp',
+}
 
-# Define la URL y los encabezados para la solicitud de la API
-url = 'https://api.igdb.com/v4/games'
-headers = {'Client-ID': 'ju1vfy05jqstzoclqv1cs2hsomw1au', 'Authorization': f'Bearer {api_key}'}
+# Parámetros de la consulta a la API de IGDB
+body = 'fields name,cover.url; limit 100; sort rating desc;\
+        where rating > 70; where rating_count > 1000;'
+
+response = requests.post(url, headers=headers, data=body)
+
+# Comprueba si la solicitud fue exitosa
+if response.status_code == 200:
+    # Convierte la respuesta en JSON
+    games = json.loads(response.text)
 
 # Crea una barra de búsqueda en Streamlit
 game_name = st.text_input('Busca un videojuego')
