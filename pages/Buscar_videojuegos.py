@@ -13,12 +13,12 @@ local_css("style.css")
 
 # Configura tu clave API de IGDB
 api_key = '8h1ymcezojqdpcvmz5fvwxal2myoxp'
-client-ID = 'ju1vfy05jqstzoclqv1cs2hsomw1au'
+client_ID = 'ju1vfy05jqstzoclqv1cs2hsomw1au'
 
 def get_game_info(game_name):
     # Define la URL y los encabezados para la solicitud de la API
     url = 'https://api.igdb.com/v4/games'
-    headers = {'Client-ID': {client-ID}, 'Authorization': f'Bearer {api_key}'}
+    headers = {'Client-ID': {client_ID}, 'Authorization': f'Bearer {api_key}'}
 
     # Define la consulta para buscar el juego
     body = f'''
