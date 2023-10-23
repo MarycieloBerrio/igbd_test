@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="🎮",
 )
 
-local_css(style.css)
+local_css("style.css")
 
 # Lee los datos del archivo
 df = pd.read_csv('Base_datos/dataset_videojuegos')
