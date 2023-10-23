@@ -24,15 +24,6 @@ st.markdown("""
         }
         
         /* ---------- Main page hacks ---------- */
-
-        section[tabindex="0"] {
-            /* no scroll */
-            overflow: hidden;
-            scroll-padding: 20%;
-            scroll-behavior: smooth;
-            /* scroll-margin: 60px; */
-        
-        }
         
         section[tabindex=0] div.stButton {
             left: -999em;
