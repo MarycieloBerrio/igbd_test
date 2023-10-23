@@ -43,7 +43,7 @@ if game_name:
         st.write(f"<h1 style='text-align: center;'>{game_info[0]['name']}</h1>" if 'name' in game_info[0] else "Nombre no disponible", unsafe_allow_html=True)
         
         # Crea dos columnas para mostrar el cover y la información del juego
-        col1, col2 = st.beta_columns(2)
+        col1, col2 = st.columns(2)
         
         # Muestra la portada del juego en la columna de la izquierda
         if 'cover' in game_info[0] and 'url' in game_info[0]['cover']:
