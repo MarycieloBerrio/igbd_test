@@ -39,7 +39,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Crear una barra lateral con opciones
-opciones = st.sidebar.radio(
+opciones = st.sidebar(
     "",
     ("Top 50 de videojuegos", "Buscar información de videojuegos")
 )
