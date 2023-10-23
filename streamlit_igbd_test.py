@@ -2,6 +2,12 @@ import streamlit as st
 from top_50 import mostrar_pagina as mostrar_pagina_inicio
 from info_juegos import mostrar_pagina as mostrar_otra_pagina
 
+# Configura el título y el favicon de la página
+st.set_page_config(
+    page_title="Gamer's Companion 🎮",
+    page_icon="🎮",
+)
+
 # Lista de páginas
 paginas = ["Página de inicio", "Otra página"]
 
