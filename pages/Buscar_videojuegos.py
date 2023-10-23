@@ -21,7 +21,7 @@ def get_game_info(game_name):
 
     # Define la consulta para buscar el juego
     body = f'''
-    fields name, summary, involved_companies.company.name, platforms.name;
+    fields name, summary, involved_companies.company.name, platforms.name, cover.url;
     where name ~ "{game_name}";'''
     
     # Realiza la solicitud a la API
