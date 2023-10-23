@@ -38,13 +38,8 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Crear una barra lateral con opciones
-opciones = st.sidebar.buttom(
-    "",
-    ("Top 50 de videojuegos", "Buscar información de videojuegos")
-)
-
-if opciones == "Top 50 de videojuegos":
+# Crear botones en la barra lateral
+if st.sidebar.button("Top 50 de videojuegos"):
 
     # URL de la imagen del encabezado
     url_imagen = "https://i.imgur.com/qQH31fg.png?1"
@@ -135,6 +130,6 @@ if opciones == "Top 50 de videojuegos":
     st.markdown(footer_html, unsafe_allow_html=True)
     pass
     
-elif opciones == "Buscar información de videojuegos":
+if st.sidebar.button("Buscar información de videojuegos"):
     # Aquí va tu código para buscar información de videojuegos
     pass
