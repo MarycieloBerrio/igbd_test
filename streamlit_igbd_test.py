@@ -38,25 +38,6 @@ st.markdown("""
             color: #756760;
             margin-bottom: 1rem;
         }
-        
-        
-        
-        
-        
-        
-        .appview-container .main .block-container {
-            padding-top: 2.875rem;
-            padding-bottom: 0px
-        }
-        
-        .gamegrid {
-            align-items: flex-end;
-            display: grid;
-            grid-template-columns: repeat(50, 16px);
-            grid-template-rows: repeat(40, 16px);
-            grid-gap: 0px;
-            /* position: absolute; */
-        }
     </style>
     """, unsafe_allow_html=True)
 
