@@ -40,3 +40,34 @@ def mostrar_pagina():
                 row_html += "</tr></table>"
                 st.write(row_html, unsafe_allow_html=True)
                 row_html = "<table><tr>"
+
+    # Información de los desarrolladores
+    developers = [
+        {"name": "Juan Gabriel Goez Duque", "email": "jgoezd@unal.edu.co"},
+        {"name": "Jerónimo Vásquez Gónzalez", "email": "jevasquez@unal.edu.co"},
+        {"name": "Marycielo Berrio Zapata", "email": "mberrioz@unal.edu.co"},
+    ]
+    
+    # Crea el HTML para el pie de página
+    footer_html = """
+    <footer style='width: 100%; background-color: #333; padding: 20px 0; color: #fff;'>
+        <div style='max-width: 600px; margin: auto; text-align: left;'>
+            <h2 style='margin-bottom: 20px; color: #fff;'>Informacion de contacto</h2>
+    """
+    
+    for dev in developers:
+        footer_html += f"<p style='margin-bottom: 10px;'><strong style='color: #fff;'>\
+                    {dev['name']}</strong>:<a href='mailto:{dev['email']}' style='color:\
+                    #fff;'>{dev['email']}</a></p>"
+    
+    footer_html += """
+        </div>
+    </footer>
+    """
+    
+    
+    # Agrega un espacio en blanco al final de la página antes del pie de página
+    st.write("<br/><br/><br/><br/>", unsafe_allow_html=True)
+    
+    # Muestra el pie de página en Streamlit
+    st.markdown(footer_html, unsafe_allow_html=True)
