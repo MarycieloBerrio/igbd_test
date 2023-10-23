@@ -81,11 +81,6 @@ if response.status_code == 200:
                 st.write(row_html, unsafe_allow_html=True)
                 row_html = "<table style='border-color: #fff;'><tr>"
     
-    
-            # Si quedan juegos en la última fila, muestra la fila
-            if count % 5 != 0:
-                row_html += "</tr></table>"
-                st.write(row_html, unsafe_allow_html=True)
 
 # Información de los desarrolladores
 developers = [
