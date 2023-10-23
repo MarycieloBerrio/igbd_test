@@ -22,6 +22,14 @@ st.markdown("""
         .stApp header {
             background: #0e1117;
         }
+
+        .reportview-container .main .block-container {
+            background-color: #0e1117;
+        }
+        
+        .sidebar .sidebar-content {
+            background-color: #0e1117;
+        }
         
     </style>
     """, unsafe_allow_html=True)
