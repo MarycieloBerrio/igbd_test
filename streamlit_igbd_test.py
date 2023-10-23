@@ -24,11 +24,11 @@ st.markdown("""
         }
         
         .reportview-container .main .block-container {
-            background-color: #0e1117;
+            background-color: #000000;
         }
         
         .sidebar .sidebar-content {
-            background-color: #0e1117;
+            background-color: #000000;
         }
     </style>
     """, unsafe_allow_html=True)
