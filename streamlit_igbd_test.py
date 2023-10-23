@@ -22,7 +22,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # URL de la imagen del encabezado
-url_imagen = "https://imgur.com/6bJlgZR"
+url_imagen = "<a href="https://imgur.com/6bJlgZR"><img src="https://i.imgur.com/6bJlgZR.png" title="source: imgur.com" /></a>"
 
 # Añade la imagen como encabezado de tu aplicación de Streamlit
 st.image(url_imagen)
