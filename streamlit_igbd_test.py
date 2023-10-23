@@ -94,23 +94,22 @@ developers = [
 ]
 
 # Crea el HTML para el pie de página
-footer_html += f"<p style='margin-bottom: 10px;'><strong style='color: #fff;'>{dev['name']}</strong>:\
-                <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
-
 footer_html = """
 <footer style='width: 100%; background-color: #333; padding: 20px 0; color: #fff;'>
     <div style='max-width: 600px; margin: auto; text-align: left;'>
-        <h2 style='margin-bottom: 20px;'>Información de contacto</h2>
+        <h2 style='margin-bottom: 20px;'>Informacion de contacto</h2>
 """
 
 for dev in developers:
-    footer_html += f"<p style='margin-bottom: 10px;'><strong>{dev['name']}</strong>:\
-                    <a href='mailto:{dev['email']}' style='color: #fff;'>{dev['email']}</a></p>"
+    footer_html += f"<p style='margin-bottom: 10px;'><strong style='color: #fff;'>\
+                {dev['name']}</strong>:<a href='mailto:{dev['email']}' style='color:\
+                #fff;'>{dev['email']}</a></p>"
 
 footer_html += """
     </div>
 </footer>
 """
+
 
 # Agrega un espacio en blanco al final de la página antes del pie de página
 st.write("<br/><br/><br/><br/>", unsafe_allow_html=True)
