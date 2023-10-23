@@ -41,9 +41,6 @@ where name ~ "{game_name}";'''
 # Realiza la solicitud a la API
 response = requests.post(url, headers=headers, data=body)
 
-# Devuelve los datos del juego
-return response.json()
-
 # Crea una barra de búsqueda en Streamlit
 game_name = st.text_input('Busca un videojuego')
 
