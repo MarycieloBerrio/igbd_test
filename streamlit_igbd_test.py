@@ -2,6 +2,12 @@ import streamlit as st
 import requests
 import json
 
+# Configura el título y el favicon de la página
+st.set_page_config(
+    page_title="Gamer's Companion 🎮",
+    page_icon="🎮",
+)
+
 # Forzar el tema oscuro
 st.markdown("""
     <style>
@@ -40,12 +46,6 @@ st.markdown("""
         }
     </style>
     """, unsafe_allow_html=True)
-
-# Configura el título y el favicon de la página
-st.set_page_config(
-    page_title="Gamer's Companion 🎮",
-    page_icon="🎮",
-)
 
 # Crear una barra lateral con opciones
 opciones = st.sidebar.selectbox(
