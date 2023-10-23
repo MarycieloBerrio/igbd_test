@@ -60,6 +60,9 @@ if response.status_code == 200:
     # Inicializa la fila HTML
     row_html = "<table><tr>"
 
+    # Inicializa la fila HTML con el estilo de borde
+    row_html = "<table style='border-color: #fff;'><tr>"
+    
     # Muestra los juegos en Streamlit
     for game in games:
         if 'cover' in game and count < 50:
@@ -74,18 +77,18 @@ if response.status_code == 200:
                         center; vertical-align: top;'><img src='{image_url}'style='width: 100px;\
                         object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;\
                         color: #fff;'>{game['name']}</div></td>"
-
-
+    
             # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
             if count % 5 == 0:
                 row_html += "</tr></table>"
                 st.write(row_html, unsafe_allow_html=True)
-                row_html = "<table><tr>"
-
-    # Si quedan juegos en la última fila, muestra la fila
-    if count % 5 != 0:
-        row_html += "</tr></table>"
-        st.write(row_html, unsafe_allow_html=True)
+                row_html = "<table style='border-color: #fff;'><tr>"
+    
+    
+        # Si quedan juegos en la última fila, muestra la fila
+        if count % 5 != 0:
+            row_html += "</tr></table>"
+            st.write(row_html, unsafe_allow_html=True)
 
 # Información de los desarrolladores
 developers = [
