@@ -57,7 +57,7 @@ if game_name:
             st.write("Imagen no disponible")
 
         # Muestra la información del juego en la columna de la derecha
-        col2.write(f"**Sinopsis:** {game_info[0]['summary']}" if 'summary')
+        col2.write(f"**Sinopsis:** {game_info[0]['summary']}")
         col2.write(f"**Desarrollador:**{game_info[0]['involved_companies'][0]['company']['name']}")
         col2.write(f"**Plataformas:** {', '.join([platform['name'] for platform in game_info[0]['platforms']])}")
     else:
