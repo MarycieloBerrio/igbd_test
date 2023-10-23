@@ -57,9 +57,6 @@ if response.status_code == 200:
     # Contador para llevar un registro de cuántos juegos se han mostrado
     count = 0
 
-    # Inicializa la fila HTML
-    row_html = "<table><tr>"
-
     # Inicializa la fila HTML con el estilo de borde
     row_html = "<table style='border-color: #fff;'><tr>"
     
