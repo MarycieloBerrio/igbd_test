@@ -52,10 +52,11 @@ if game_name:
     # Verifica si game_info contiene algún elemento
     if game_info:
         # Muestra la información del juego en Streamlit
-        st.write(f"**Nombre:** {game_info[0]['name']}")
-        st.write(f"**Sinopsis:** {game_info[0]['summary']}")
-        st.write(f"**Desarrollador:** {game_info[0]['developer']}")
-        st.write(f"**Editor:** {game_info[0]['publisher']}")
-        st.write(f"**Plataformas:** {', '.join(game_info[0]['platforms'])}")
+        st.write(f"**Nombre:** {game_info[0]['name']}" if 'name' in game_info[0] else "Nombre no disponible")
+        st.write(f"**Sinopsis:** {game_info[0]['summary']}" if 'summary' in game_info[0] else "Sinopsis no disponible")
+        st.write(f"**Desarrollador:** {game_info[0]['developer']}" if 'developer' in game_info[0] else "Desarrollador no disponible")
+        st.write(f"**Editor:** {game_info[0]['publisher']}" if 'publisher' in game_info[0] else "Editor no disponible")
+        st.write(f"**Plataformas:** {', '.join(game_info[0]['platforms'])}" if 'platforms' in game_info[0] else "Plataformas no disponibles")
     else:
         st.write("Lo siento, no pude encontrar ningún juego con ese nombre.")
+
