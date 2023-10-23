@@ -31,6 +31,8 @@ def get_game_info(game_name):
     return response.json()
 
 # Si se introduce un nombre de juego, busca la información del juego
+game_name = st.text_input('Ingresa el nombre del juego')
+
 if game_name:
     game_info = get_game_info(game_name)
     
