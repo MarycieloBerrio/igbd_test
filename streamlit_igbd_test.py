@@ -97,7 +97,7 @@ developers = [
 footer_html = """
 <footer style='width: 100%; background-color: #333; padding: 20px 0; color: #fff;'>
     <div style='max-width: 600px; margin: auto; text-align: left;'>
-        <h2 style='margin-bottom: 20px;'>Informacion de contacto</h2>
+        <h2 style='margin-bottom: 20px; color: #fff;'>Informacion de contacto</h2>
 """
 
 for dev in developers:
