@@ -27,7 +27,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Lee los datos del archivo
-df = pd.read_csv('Base_datos/dataset_videojuegos.csv')
+df = pd.read_csv('igbd_test/Base_datos/dataset_videojuegos.csv')
 
 # Crea una barra de búsqueda en Streamlit
 game_name = st.text_input('Busca un videojuego')
