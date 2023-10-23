@@ -25,7 +25,7 @@ st.markdown("""
 url_imagen = "https://i.imgur.com/qQH31fg.png"
 
 # Añade la imagen como encabezado de tu aplicación de Streamlit
-st.image(url_imagen, use_column_width=True)
+st.image(url_imagen)
 
 # URL de la API de IGDB
 url = "https://api.igdb.com/v4/games"
