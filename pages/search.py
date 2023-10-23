@@ -49,10 +49,13 @@ if game_name:
     # Devuelve los datos del juego
     game_info = response.json()
     
-    # Muestra la información del juego en Streamlit
+    # Verifica si game_info contiene algún elemento
     if game_info:
+        # Muestra la información del juego en Streamlit
         st.write(f"**Nombre:** {game_info[0]['name']}")
         st.write(f"**Sinopsis:** {game_info[0]['summary']}")
         st.write(f"**Desarrollador:** {game_info[0]['developer']}")
         st.write(f"**Editor:** {game_info[0]['publisher']}")
         st.write(f"**Plataformas:** {', '.join(game_info[0]['platforms'])}")
+    else:
+        st.write("Lo siento, no pude encontrar ningún juego con ese nombre.")
