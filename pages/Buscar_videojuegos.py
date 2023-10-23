@@ -11,13 +11,6 @@ st.set_page_config(
 
 local_css("style.css")
 
-# Crea una barra de búsqueda en Streamlit
-game_name = st.text_input('Busca un videojuego')
-
-# Si se introduce un nombre de juego, busca la información del juego
-if game_name:
-    game_info = get_game_info(game_name)
-
 # Configura tu clave API de IGDB
 api_key = '8h1ymcezojqdpcvmz5fvwxal2myoxp'
 
@@ -32,6 +25,9 @@ def get_game_info(game_name):
     
     # Devuelve los datos del juego
     return response.json()
+    
+# Crea una barra de búsqueda en Streamlit
+game_name = st.text_input('Busca un videojuego')
 
 # Si se introduce un nombre de juego, busca la información del juego
 if game_name:
