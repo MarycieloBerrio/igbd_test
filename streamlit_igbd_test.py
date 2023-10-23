@@ -8,30 +8,7 @@ st.set_page_config(
     page_icon="🎮",
 )
 
-# Forzar el tema oscuro
-st.markdown("""
-    <style>
-        .stApp {
-            background: #0e1117;
-        }
-
-        div.stTabs button {
-            background: #0e1117;
-        }
-
-        .stApp header {
-            background: #0e1117;
-        }
-        
-        .reportview-container .main .block-container {
-            background-color: #000000;
-        }
-        
-        .sidebar .sidebar-content {
-            background-color: #000000;
-        }
-    </style>
-    """, unsafe_allow_html=True)
+local_css("style.css")
 
 # URL de la imagen del encabezado
 url_imagen = "https://i.imgur.com/qQH31fg.png?1"
