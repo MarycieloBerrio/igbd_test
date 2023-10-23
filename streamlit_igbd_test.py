@@ -60,20 +60,21 @@ if response.status_code == 200:
     # Inicializa la fila HTML
     row_html = "<table><tr>"
 
-    # Muestra los juegos en Streamlit
-    for game in games:
-        if 'cover' in game and count < 50:
-            image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
-            image_url = 'https:' + image_url
+# Muestra los juegos en Streamlit
+for game in games:
+    if 'cover' in game and count < 50:
+        image_url = game['cover']['url'].replace('t_thumb', 't_cover_big')
+        image_url = 'https:' + image_url
                 
-            # Incrementa el contador
-            count += 1
+        # Incrementa el contador
+        count += 1
 
-            # Añade el juego a la fila HTML
-            row_html += f"<td style='border: none; width: 100px; height: 200px;text-align:\
-                        center; vertical-align: top;'><img src='{image_url}'style='width: \
-                        100px;object-fit: contain;'/><br/><div style='width: 100px; word-wrap:\
-                        break-word;\'>{game['name']}</div></td>"
+        # Añade el juego a la fila HTML
+        row_html += f"<td style='border: none; width: 100px; height: 200px; text-align:\
+                    center; vertical-align: top;'><img src='{image_url}'style='width: 100px;\
+                    object-fit: contain;'/><br/><div style='width: 100px; word-wrap: break-word;\
+                    color: #fff;'>{game['name']}</div></td>"
+
 
             # Si se han añadido tres juegos a la fila, muestra la fila y comienza una nueva
             if count % 5 == 0:
